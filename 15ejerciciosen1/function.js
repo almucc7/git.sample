@@ -119,6 +119,17 @@ function app(){
 
 
 
+/******CON TERNARIO*****/
+function app(){
+
+    const expected = printRandomNumber();
+    const userOption = prompt('Dime un número del 1 al 10'); //Ojo que esto es un String
+
+    const isCorrect = expected === Number(userOption); //Convierto el userOption string del prompt a Number, comparo y hago la asignación
+    const result = isCorrect ? 'Has acertado' : `No has acertado. El número era ${expected}`;
+
+    print(result);
+}
 
 
 //12. Crea una función que reciba un número como parámetro e imprima por consola si el número dado es par o impar:
