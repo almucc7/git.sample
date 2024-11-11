@@ -150,7 +150,7 @@ evenOddNumber(5);
 //13. Crea una función que reciba un parámetro de tipo string e imprima por consola el string revertido. (ejemplo: 'casa' => 'asac):
 function printString(text){ 
     
-    return text. //Si se cumple la primera condición coge la primera multiplicación y si no, coge la segunda     
+     //Si se cumple la primera condición coge la primera multiplicación y si no, coge la segunda     
 }
 
 //Comprobamos si funciona en ambos casos:
