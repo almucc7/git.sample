@@ -192,11 +192,16 @@ console.log(revertString('Ornitorrinco'));
 // Mejora: utiliza una función independiente para el render
 function renderMultiplicationTable(num){
 
+    let accumulator = ``;
+
     for (let i = 0; i <= 10; i++) { //La tabla del 0 al 10
-        console.log(`${num} por ${i} = ${num*i}`);       
+        accumulator += `${num} por ${i} = ${num*i}`;       
     }
+
+    return accumulator;
 }
-renderMultiplicationTable(5);
+console.log(renderMultiplicationTable(5));
+
 
 
 
