@@ -224,10 +224,11 @@ function isPrime(num){
 
 function renderPrime(n){ 
 
-    let result = isPrime(n); //La función anterior, isPrime() me devuelve o un string o un boolean
-    if(typeof n === 'boolean'){ //Si me devuelve un boolean
+    let result = isPrime(n); //La función anterior, isPrime(), me devuelve o un string(El valor no es válido) o un boolean(true o false)
+    if(typeof result === 'boolean'){ //Si me devuelve un boolean
 
-        result = result ? 'Es primo' : 'No es primo'; //Lo convierto a es primo o no es primo para sacarlo por consola
+        result = result ? 'Es primo' : 'No es primo'; //Lo convierto a es primo (si nos llegó true) o no es primo (si nos llegó
+        //false), para sacarlo por consola
     }
 
     console.log(n, result);
@@ -296,7 +297,7 @@ console.log(typeof v2); //Saca el tipo de lo que le demos, en este caso la varia
 
 //Coerción a String de la variable v1
 //El operador es distinto
-//Operador sobrecargado (sabe multiplicar, ha sacado el tipo y ahora sumar. Tiene preferencia multiplicar):
+//Operador sobrecargado (+ puede sumar y concatenar).SIEMPRE QUE HAYA + Y UN STRING, CONCATENARÁ:
 console.log(v1 + v2); //Resultado string 34 (sufre coerción v1)
 console.log(typeof v2);
 
