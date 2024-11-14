@@ -59,14 +59,15 @@ const countVocals = function(value = ''){
 
     for (let i = 0; i < value.length; i++) {
         
-        const item = value[i];
-        if(vocals.includes(item)){
+        const item = value[i]; //es const porque cada vez que el bucle da una vuelta, se crea una nueva variable const para esa nueva iteración
+        if(vocals.includes(item)){//Si el caracter actual de item(cada letra de la palabra enviada)está en el array de vocales
+                                    //el método includes devolverá true si el caracter se encuentra en el array
 
-            accumulator++;
+            accumulator++;//y se sumará 1 al al acumulador de vocales que están en el array y en la palabra enviada
         }        
     }
 
-    return accumulator;
+    return accumulator;//Devuelvo la cantidad de vocales encontradas
 }
 
 console.log(countVocals('Sevilla'));
@@ -93,11 +94,67 @@ console.log(countVocalsTwo('El murciélago verde'));  //Devuelve 8
 
 
 
-//4. Crea una función que verifique si una cadena de texto recibida por parámetros es un pangrama (contiene todas las letras del abecedario).
+//4. Crea una función que verifique si una cadena de texto recibida por parámetros es un pangrama 
+//(contiene todas las letras del abecedario):
+
+const findAllSpanishLettersAlphabet = function(value = '') {
+    
+    const allLetters = 'abcdefghijklmnñopqrstuvwxyz';//Definimos el alfabeto completo     
+    
+    let foundLetters = [];//Creamos un array para guardar las letras que encontramos en el texto
+    
+    value = value.toLowerCase();//Convertimos el texto que nos envían a minúsculas para poder compararlo bien
+    
+    value = value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");//Eliminamos tildes y acentos del texto que nos envían
+
+    // Recorremos cada letra del texto
+    for (let i = 0; i < value.length; i++) {
+
+        const item = value[i]; //Guardamos cada letra del texto en cada iteración
+
+        // Si la letra está en el alfabeto y aún no la hemos encontrado
+        if (allLetters.includes(item) && !foundLetters.includes(item)) {
+
+            // Agregamos la letra al final del array de letras encontradas
+            foundLetters.push(item);
+        }
+    }
+
+    // Si el array tiene 27 letras, significa que encontramos todas las letras del alfabeto
+    if (foundLetters.length === allLetters.length) {
+
+        console.log('Es un pangrama');
+
+    } else {
+
+        console.log('No es un pangrama');
+    }
+}
+
+findAllSpanishLettersAlphabet('Un jugoso zumo de piña y kiwi bien frío es exquisito y no lleva alcohol');
+
 
 //5. Escribe una función que compruebe si una cadena de texto contiene todas las vocales.
 
 //6. Crea una función que realice una cuenta atrás desde un número recibido por parámetros.
+
+const countDown = function(value){
+
+    let counter = 0;
+
+    for (let i = value; i > 0; i--) {
+        
+       
+        counter = i;
+        
+    }
+
+    return counter;
+}
+
+console.log(countDown(5));
+
+
 
 //7. Escribe una función que reciba por parámetros el año de nacimiento, y calcule la edad de la persona.
 
