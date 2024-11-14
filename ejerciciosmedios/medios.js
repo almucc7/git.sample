@@ -46,7 +46,24 @@ const removeLastFirstThree = function(value = ''){
 console.log(removeLastFirstThree('Patata'));
 
 
-// 2. Escribe una función que reciba una palabra y revise si es un palíndromo.
+// 2. Escribe una función que reciba una palabra y revise si es un palíndromo:
+
+const isPalindrome = function(value = '') {
+    
+    // Convertimos la palabra a minúsculas para ignorar diferencias entre mayúsculas y minúsculas
+    let word = value.toLowerCase();
+
+    // Invertimos la palabra y la comparamos con la original
+    let reversedWord = word.split("").reverse().join("");
+
+    // Verificamos si la palabra original es igual a la palabra invertida
+    return word === reversedWord;
+}
+
+// Ejemplo de uso
+console.log(isPalindrome("Anilina")); // Devuelve true
+console.log(isPalindrome("Casa"));    // Devuelve false
+
 
 
 
@@ -95,13 +112,13 @@ console.log(countVocalsTwo('El murciélago verde'));  //Devuelve 8
 
 
 //4. Crea una función que verifique si una cadena de texto recibida por parámetros es un pangrama 
-//(contiene todas las letras del abecedario):
+//(contiene todas las letras del abecedario):   -------> NO ME SALE
 
 const findAllSpanishLettersAlphabet = function(value = '') {
     
-    const allLetters = 'abcdefghijklmnñopqrstuvwxyz';//Definimos el alfabeto completo     
+    const alphabet = 'abcdefghijklmnñopqrstuvwxyz';//Definimos el alfabeto completo     
     
-    let foundLetters = [];//Creamos un array para guardar las letras que encontramos en el texto
+    let foundLetters = '';//Creamos un variables para guardar las letras NO REPETIDAS que encontremos en el texto
     
     value = value.toLowerCase();//Convertimos el texto que nos envían a minúsculas para poder compararlo bien
     
@@ -110,18 +127,23 @@ const findAllSpanishLettersAlphabet = function(value = '') {
     // Recorremos cada letra del texto
     for (let i = 0; i < value.length; i++) {
 
-        const item = value[i]; //Guardamos cada letra del texto en cada iteración
+        const letter = value[i]; //Guardamos cada letra del texto que nos han dado, en cada iteración
 
-        // Si la letra está en el alfabeto y aún no la hemos encontrado
-        if (allLetters.includes(item) && !foundLetters.includes(item)) {
+        // Si la letra está en el alfabeto y aún no la hemos encontrado (no está incluida en la variable)
+        if (alphabet.includes(letter) && !foundLetters.includes(letter)) {
 
-            // Agregamos la letra al final del array de letras encontradas
-            foundLetters.push(item);
+            // Agregamos la letra a la variable de letras encontradas
+            foundLetters += letter;
         }
     }
 
+    //split() convierte el string foundLetters en un array de strings, sort() ordena alfabeticamente las letras del array
+    // join() convierte el array nuevamente en una cadena ordenada
+    // Ordenamos foundLetters para asegurar la comparación exacta con allLetters
+    foundLetters = foundLetters.split('').sort().join('');
+
     // Si el array tiene 27 letras, significa que encontramos todas las letras del alfabeto
-    if (foundLetters.length === allLetters.length) {
+    if (foundLetters.length === alphabet.length) {
 
         console.log('Es un pangrama');
 
@@ -134,44 +156,272 @@ const findAllSpanishLettersAlphabet = function(value = '') {
 findAllSpanishLettersAlphabet('Un jugoso zumo de piña y kiwi bien frío es exquisito y no lleva alcohol');
 
 
-//5. Escribe una función que compruebe si una cadena de texto contiene todas las vocales.
+//5. Escribe una función que compruebe si una cadena de texto contiene todas las vocales:
+
+const allVocals = function(text) {
+
+    // Convertimos la cadena a minúsculas para que no haya problemas en la comparación
+    text = text.toLowerCase();
+  
+    // Definimos una variable con todas las vocales
+    const vocals = "aeiouáéíóúü";
+  
+    // Recorremos cada vocal y comprobamos si está en la cadena
+    for (let i = 0; i < vocals.length; i++) {
+
+      if (!text.includes(vocals[i])) {
+        // Si falta alguna vocal, retornamos false
+
+        return false;
+      }
+    }
+  
+    // Si se encuentran todas las vocales, retornamos true
+    return true;
+  }
+  
+  
+  console.log(allVocals("Cantón, patín, fetén, patán, pingüino, chubasquero, cúmulo")); // Devuelve true
+  console.log(allVocals("prgmr")); // Devuelve false
+
 
 //6. Crea una función que realice una cuenta atrás desde un número recibido por parámetros.
 
-const countDown = function(value){
+const countDown = function(value) {
+    let result = []; // Creamos un array vacío para almacenar la cuenta atrás
 
-    let counter = 0;
+    // Iniciamos el bucle desde 'value' hasta 0
+    for (let i = value; i >= 0; i--) {
 
-    for (let i = value; i > 0; i--) {
-        
-       
-        counter = i;
-        
+        result.push(i); // Añadimos cada valor al final del array 'result'
     }
 
-    return counter;
+    return result.join(", "); // Convertimos el array en una cadena separada por comas
+};
+
+
+console.log(countDown(5)); // Devuelve: "5, 4, 3, 2, 1, 0"
+
+
+
+
+//7. Escribe una función que reciba por parámetros el año de nacimiento, y calcule la edad de la persona (CALCULO CON LA FECHA DE NACIMIENTO DIA/MES/AÑO Y DIA-MES-AÑO):
+
+const calculateAge = function (value) {
+    // Año actual fijo
+    const currentYear = 2024;
+
+    // Extraemos el año de la fecha de nacimiento en formato día/mes/año o día-mes-año
+    const dateBirth = parseInt(value.split(/[-/]/)[2]); //Dividimos la fecha en partes, separadas por - o /. Esto coloca el año en la tercera posición del array, 
+    //que accedemos con [2]. Luego usamos parseInt para convertirlo en un número
+    
+    // Calculamos la edad
+    return currentYear - dateBirth;
 }
 
-console.log(countDown(5));
+console.log(calculateAge("15/05/1985")); // Devuelve 39
+console.log(calculateAge("15-05-1990")); // Devuelve 34
+
+
+//8. Crea una función que reciba la edad de una persona por parámetros y verifique si es mayor de edad. Imprime por consola un string con el resultado:
+
+const isAdult = function(age) {
+
+    if (age >= 18) {
+
+        console.log("La persona es mayor de edad.");
+    } else {
+        console.log("La persona es menor de edad.");
+    }
+}
+
+
+isAdult(20); // Imprime: La persona es mayor de edad.
+isAdult(15); // Imprime: La persona es menor de edad.
+
+
+//9. Crea una función que simule el lanzamiento de un dado e imprime por consola el resultado cada vez que se ejecuta:
+
+const rollDice = function() {
+    
+    // Generamos un número aleatorio entre 1 y 6
+    let result = Math.floor(Math.random() * 6) + 1;
+
+    // Imprimimos el resultado en la consola
+    console.log("Tirada:", result);
+}
+
+
+rollDice(); // Imprime un número aleatorio entre 1 y 6
+rollDice(); // Cada ejecución genera un nuevo resultado
+
+
+//10. Crea una función que reciba un año por parámetros y compruebe e imprima por consola si el año es bisiesto o no:
+
+const isLeapYear = function(year) {
+    
+    // Comprobamos si el año es bisiesto (un año es bisiesto si es divisible entre 4 y no lo es entre 100, o es divisible entre 400)
+    let isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+
+    // Imprimimos el resultado en la consola
+    if (isLeap) {
+
+        console.log(year + " es un año bisiesto.");
+    } else {
+
+        console.log(year + " no es un año bisiesto.");
+    }
+}
+
+
+isLeapYear(2024); // Imprime: 2024 es un año bisiesto.
+isLeapYear(2023); // Imprime: 2023 no es un año bisiesto.
+
+
+//11. Escribe una función que simula el juego piedra, papel y tijera. Recibirá como parámetro una opción (piedra, papel o tijera) en forma de string. La máquina, elegirá 
+//automáticamente una opción aleatoria. Imprime por consola ambas elecciones y en caso de ganar el jugador un mensaje de victoria, y en caso de perder uno de derrota:
+
+const playRockPaperScissors = function(playerChoice) {
+    
+    // Opciones del juego
+    const options = ["piedra", "papel", "tijera"];
+
+    // La máquina elige una opción aleatoria (elige aleatoriamente una opción del array options (que contiene "piedra", "papel" y "tijera") y la asigna a machineChoice)
+    const machineChoice = options[Math.floor(Math.random() * options.length)];
+
+    // Imprimimos ambas elecciones
+    console.log("Jugador elige:", playerChoice);
+    console.log("Máquina elige:", machineChoice);
+
+    // Determinamos el resultado del juego
+    if (playerChoice === machineChoice) {
+
+        console.log("Es un empate.");
+    } else if (
+
+        (playerChoice === "piedra" && machineChoice === "tijera") ||
+        (playerChoice === "papel" && machineChoice === "piedra") ||
+        (playerChoice === "tijera" && machineChoice === "papel")
+    ) {
+        console.log("¡Ganaste!");
+
+    } else {
+        console.log("Perdiste.");
+    }
+}
+
+
+playRockPaperScissors("piedra"); // La salida variará según la elección aleatoria de la máquina
 
 
 
-//7. Escribe una función que reciba por parámetros el año de nacimiento, y calcule la edad de la persona.
+//12. La serie de Fibonacci es un problema matemático que realiza la suma de los dos números anteriores para generar el siguiente. Crea una función que imprima por consola la 
+//serie de Fibonacci hasta un número introducido por el usuario. El usuario debe ser preguntado por este número al iniciar la aplicación.
+//La serie de Fibonacci es una sucesión de números en la que cada número (a partir del tercero) es la suma de los dos anteriores. La serie comienza con 0 y 1:
 
-//8. Crea una función que reciba la edad de una persona por parámetros y verifique si es mayor de edad. Imprime por consola un string con el resultado.
+const printFibonacciSeries = function(limit) {
+    let num1 = 0; // Primer número de la serie de Fibonacci
+    let num2 = 1; // Segundo número de la serie de Fibonacci
+    let nextNum;  // Almacena el siguiente número en la serie
 
-//9. Crea una función que simule el lanzamiento de un dado e imprime por consola el resultado cada vez que se ejecuta.
+    console.log("Serie de Fibonacci:");
+    console.log(num1); // Imprimimos el primer número
+    console.log(num2); // Imprimimos el segundo número
 
-//10. Crea una función que reciba un año por parámetros y compruebe e imprima por consola si el año es bisiesto o no.
+    // Generamos la serie de Fibonacci hasta llegar al límite
+    while ((nextNum = num1 + num2) <= limit) {
+        console.log(nextNum); // Imprimimos el siguiente número
+        num1 = num2; // Actualizamos num1 al valor de num2
+        num2 = nextNum; // Actualizamos num2 al siguiente número en la serie
+    }
+};
 
-//11. Escribe una función que simula el juego piedra, papel y tijera. Recibirá como parámetro una opción (piedra, papel o tijera) en forma de string. La máquina, elegirá automáticamente una opción aleatoria. Imprime por consola ambas elecciones y en caso de ganar el jugador un mensaje de victoria, y en caso de perder uno de derrota.
+// Solicitamos al usuario que ingrese un número
+const userInput = prompt("Introduce un número para la serie de Fibonacci:");
+const limit = parseInt(userInput); // Convertimos la entrada del usuario en número
 
-//12. La serie de Fibonacci es un problema matemático que realiza la suma de los dos números anteriores para generar el siguiente. Crea una función que imprima por consola la serie de Fibonacci hasta un número introducido por el usuario. El usuario debe ser preguntado por este número al iniciar la aplicación.
+// Ejecutamos la función con el límite introducido por el usuario
+printFibonacciSeries(limit);
 
-//13. Escribe una función generadora de nombres de usuario aleatorios, a partir de dos grupos de palabras dadas. Estos grupos de palabras pueden estar agrupados en arrays. (nombres=['Hugo', 'Luis'], apellidos=['Duro', 'Fabiano']). Retorna un nombre de usuario aleatorio con nombre, apellido y un número aleatorio del 1 al 100. (Por ejemplo -> 'Pepe Pérez 87'.)
 
-//14. Crea una función calculadora de propinas. Debe recibir el total de la cuenta y el porcentaje de propina deseado, con ello deberá calcular e imprimir por consola la cuenta, la propina que corresponde a la cuenta introducida, y el total a pagar. Redondea a dos decimales.
+//13. Escribe una función generadora de nombres de usuario aleatorios, a partir de dos grupos de palabras dadas. Estos grupos de palabras pueden estar agrupados 
+//en arrays. (nombres=['Hugo', 'Luis'], apellidos=['Duro', 'Fabiano']). Retorna un nombre de usuario aleatorio con nombre, apellido y un número aleatorio del 1 al 100. 
+//(Por ejemplo -> 'Pepe Pérez 87'.):
 
-//15. Escribe una función que calcule el descuento aplicado a un precio. La función recibirá el precio y el descuento del artículo en venta, con ellos deberá calcular e imprimir por consola el precio, el descuento y el total del precio una vez aplicado el descuento. Redondea a dos decimales. */
+const generateUsername = function() {
+    // Arrays con nombres y apellidos
+    const names = ['Hugo', 'Luis', 'Antonio'];
+    const surnames = ['Garrido', 'Garcia', 'Sanchez'];
+
+    // Elegimos un nombre aleatorio del array 'names'
+    const randomName = names[Math.floor(Math.random() * names.length)];
+
+    // Elegimos un apellido aleatorio del array 'surnames'
+    const randomSurname = surnames[Math.floor(Math.random() * surnames.length)];
+
+    // Generamos un número aleatorio entre 1 y 100
+    const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+    // Creamos el nombre de usuario aleatorio
+    const username = `${randomName} ${randomSurname} ${randomNumber}`;
+
+    // Retornamos el nombre de usuario
+    return username;
+}
+
+
+console.log(generateUsername()); // Por ejemplo: 'Hugo Fabiano 87'
+
+
+
+//14. Crea una función calculadora de propinas. Debe recibir el total de la cuenta y el porcentaje de propina deseado, con ello deberá calcular e imprimir por consola la cuenta, 
+//la propina que corresponde a la cuenta introducida, y el total a pagar. Redondea a dos decimales:
+
+const tipCalculator = function(billAmount, tipPercentage) {
+    
+    // Calculamos la propina multiplicando el total por el porcentaje y dividiendo entre 100
+    let tip = (billAmount * tipPercentage) / 100;
+    
+    // Calculamos el total sumando la cuenta y la propina
+    let total = billAmount + tip;
+    
+    // Redondeamos la propina y el total a dos decimales
+    tip = tip.toFixed(2);
+    total = total.toFixed(2);
+    
+    // Imprimimos la cuenta, la propina y el total a pagar. Tofixed() redondea a los decimales que le pongas entre parentesis
+    console.log("Cuenta:", billAmount.toFixed(2));
+    console.log("Propina:", tip);
+    console.log("Total a pagar:", total);
+}
+
+
+tipCalculator(50, 15); // Con una cuenta de 50 y una propina del 15%
+
+
+
+//15. Escribe una función que calcule el descuento aplicado a un precio. La función recibirá el precio y el descuento del artículo en venta, con ellos deberá calcular e imprimir por 
+//consola el precio, el descuento y el total del precio una vez aplicado el descuento. Redondea a dos decimales:
+
+const calculateDiscount = function(price, discountPercentage) {
+    
+    // Calculamos el descuento multiplicando el precio por el porcentaje de descuento y dividiendo entre 100
+    let discount = (price * discountPercentage) / 100;
+    
+    // Calculamos el precio total restando el descuento al precio original
+    let totalPrice = price - discount;
+    
+    // Redondeamos el descuento y el precio total a dos decimales
+    discount = discount.toFixed(2);
+    totalPrice = totalPrice.toFixed(2);
+    
+    // Imprimimos el precio original, el descuento y el precio total después de aplicar el descuento. Tofixed() redondea a los decimales que le pongas entre parentesis
+    console.log("Precio original:", price.toFixed(2));
+    console.log("Descuento:", discount);
+    console.log("Precio con descuento:", totalPrice);
+}
+
+
+calculateDiscount(100, 20); // Con un precio de 100 y un descuento del 20%
 
  
