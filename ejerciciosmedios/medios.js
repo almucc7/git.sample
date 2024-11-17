@@ -46,6 +46,24 @@ const removeLastFirstThree = function(value = ''){
 console.log(removeLastFirstThree('Patata'));
 
 
+//Otra manera:
+
+const getLetters = function(value = ''){
+
+    const arrayLetter = value.split(''); //convierte value en un array donde cada índice es un caracter del string y guardo este array en la constante.
+       
+    const primerCaracter = arrayLetter.shift();
+    const ultimoCaracter = arrayLetter.pop();   
+
+    return { primerCaracter, ultimoCaracter }; //Devuelve un objeto literal, primeraCaracter: S y ultimoCaracter: o
+
+}
+
+console.log(getLetters('Supercalifragilisticuestialidoso'));
+
+
+
+
 // 2. Escribe una función que reciba una palabra y revise si es un palíndromo:
 
 const isPalindrome = function(value = '') {
@@ -112,48 +130,53 @@ console.log(countVocalsTwo('El murciélago verde'));  //Devuelve 8
 
 
 //4. Crea una función que verifique si una cadena de texto recibida por parámetros es un pangrama 
-//(contiene todas las letras del abecedario):   -------> NO ME SALE
+//(contiene todas las letras del abecedario):   -------> ESTA ES SU VERSIÓN
 
-const findAllSpanishLettersAlphabet = function(value = '') {
-    
-    const alphabet = 'abcdefghijklmnñopqrstuvwxyz';//Definimos el alfabeto completo     
-    
-    let foundLetters = '';//Creamos un variables para guardar las letras NO REPETIDAS que encontremos en el texto
-    
-    value = value.toLowerCase();//Convertimos el texto que nos envían a minúsculas para poder compararlo bien
-    
-    value = value.normalize('NFD').replace(/[\u0300-\u036f]/g, "");//Eliminamos tildes y acentos del texto que nos envían
+//FUNCIÓN QUE ELIMINA TILDES
+function removeAccentsPro(value = '') {
+    const vocals = {
+        á: 'a',
+        é: 'e',
+        í: 'i',
+        ó: 'o',
+        ú: 'u',
+        ü: 'u',
+    };
 
-    // Recorremos cada letra del texto
-    for (let i = 0; i < value.length; i++) {
+    const invalids = 'áéíóúü';
+    const characters = value.split('');
 
-        const letter = value[i]; //Guardamos cada letra del texto que nos han dado, en cada iteración
-
-        // Si la letra está en el alfabeto y aún no la hemos encontrado (no está incluida en la variable)
-        if (alphabet.includes(letter) && !foundLetters.includes(letter)) {
-
-            // Agregamos la letra a la variable de letras encontradas
-            foundLetters += letter;
+    for (let i = 0; i < characters.length; i++) {
+        const character = characters[i];
+        if (invalids.includes(character)) {
+            characters[i] = vocals[character];
         }
     }
 
-    //split() convierte el string foundLetters en un array de strings, sort() ordena alfabeticamente las letras del array
-    // join() convierte el array nuevamente en una cadena ordenada
-    // Ordenamos foundLetters para asegurar la comparación exacta con allLetters
-    foundLetters = foundLetters.split('').sort().join('');
-
-    // Si el array tiene 27 letras, significa que encontramos todas las letras del alfabeto
-    if (foundLetters.length === alphabet.length) {
-
-        console.log('Es un pangrama');
-
-    } else {
-
-        console.log('No es un pangrama');
-    }
+    return characters.join('');
 }
 
-findAllSpanishLettersAlphabet('Un jugoso zumo de piña y kiwi bien frío es exquisito y no lleva alcohol');
+
+
+
+function isPangram(value = '') {
+    const letters = 'abcdefghijklmnñopqrstuvwxyz';
+    let validValue = value.toLowerCase();
+    validValue = removeAccents(validValue);
+
+    for (let i = 0; i < letters.length; i++) {
+        const letter = letters[i];
+        if (!validValue.includes(letter)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+sample = '';
+console.log(sample, 'is pangram: ', isPangram(sample));
+sample = 'ábcdéfghijk lmnño❤️😁,:;^pqrstuvwxyz';
+console.log(sample, 'is pangram: ', isPangram(sample));
 
 
 //5. Escribe una función que compruebe si una cadena de texto contiene todas las vocales:
@@ -183,6 +206,33 @@ const allVocals = function(text) {
   
   console.log(allVocals("Cantón, patín, fetén, patán, pingüino, chubasquero, cúmulo")); // Devuelve true
   console.log(allVocals("prgmr")); // Devuelve false
+
+
+
+  //Otra manera:
+  const allVowels = function(value = '') {
+    
+    const vocals = 'aeiou'; // Cadena que contiene todas las vocales posibles
+    const noAccents = removeAccentsPro(value); // Eliminamos las tildes del string
+    let unicVocals = []; // Aquí almacenaremos las vocales únicas
+
+    for (let i = 0; i < noAccents.length; i++) {
+
+        const currentChar = noAccents[i]; // Tomamos el carácter actual
+
+        // Verificamos si es una vocal y si no está ya en unicVocals
+        if (vocals.includes(currentChar) && !unicVocals.includes(currentChar)) {
+
+            unicVocals.push(currentChar);
+        }
+    }
+
+    return unicVocals; // Devolvemos las vocales únicas encontradas
+};
+
+console.log(allVowels('Timón')); // Imprime ['i', 'o']
+
+
 
 
 //6. Crea una función que realice una cuenta atrás desde un número recibido por parámetros.
