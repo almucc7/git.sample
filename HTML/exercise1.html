@@ -1,11 +1,119 @@
+<!-- Crear un documento HTML con la estructura básica (sample1.html)
+Agregar un comentario al inicio del documento
+Agregar un título a la página
+Agregar varios párrafos
+Agregar un titulo a las listas siguientes
+Agregar una lista desordenada con 3 elementos
+Agrega una lista desordenada con 3 elementos cada uno con una lista anidada con 3 elementos
+Agrega un título al resto de la página
+Agregar alguna imagen con un texto alternativo
+Agregar un titulo a la lista siguiente dentro de la sección de imágenes
+Agregar una lista ordenada con 3 elementos, que sean enlaces a
+Google
+Bing
+DuckDuckGo
+Agregar un párrafo con los mismos enlaces asociados a las imagen de cada buscador
+Validar el documento con el servicio de validación de W3C -->
+
+<!-- Esto es un comentario -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en, es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta name="description" content="Primer ejercicio de html">
+  <meta name="keywords" content="HTML, Curso, Web, Ejercicio1">
+  <title>Exercise 1</title>
+  <link rel="shortcut icon" href="web01/number.one.logo.png" type="image/png">
 </head>
 <body>
+
+  <h1>Primer ejercicio de HTML</h1>
+
+  <div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt itaque porro eligendi dignissimos! Ea ex ratione nostrum incidunt saepe, accusantium, veniam, tempora iure 
+      repellat sit quia in impedit tempore aperiam.</p>
+    
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt itaque porro eligendi dignissimos! Ea ex ratione nostrum incidunt saepe, accusantium, veniam, tempora iure 
+      repellat sit quia in impedit tempore aperiam.</p>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt itaque porro eligendi dignissimos! Ea ex ratione nostrum incidunt saepe, accusantium, veniam, tempora iure 
+      repellat sit quia in impedit tempore aperiam.</p>
+
+  </div>
+
+  <div>
+    <h2>Lista desordenada con 3 elementos</h2>
+    <ul>
+      <li>Elemento 1</li>
+      <li>Elemento 2</li>
+      <li>Elemento 3</li>
+    </ul>
+  </div>
+  
+  <div>
+    <ul>
+    <li>Elemento 1
+      <ul>
+        <li>Elemento 1.1</li>
+        <li>Elemento 1.2</li>
+        <li>Elemento 1.3</li>
+      </ul>
+    </li>
+    <li>Elemento 2
+      <ul>
+        <li>Elemento 2.1</li>
+        <li>Elemento 2.2</li>
+        <li>Elemento 2.3</li>
+      </ul>
+    </li>
+    <li>Elemento 3
+      <ul>
+        <li>Elemento 3.1</li>
+        <li>Elemento 3.2</li>
+        <li>Elemento 3.3</li>
+      </ul>
+    </li>
+  </ul>
+  </div>
+
+  <div>    
+      <img src="web01/assets/cr7_chilena.png" alt="Chilena CR7">    
+  </div>
+
+  <section>
+    <h2>Lista de imágenes</h2>
+    <ul>
+      <li><img src="web01/assets/guitarra_clasica.jpg" alt="Guitarra clásica"></li>
+      <li><img src="web01/assets/guitarra_acustica.jpg" alt="Guitarra acústica"></li>
+      <li><img src="web01/assets/guitarra_electrica.jpg" alt="Guitarra eléctrica"></li>
+    </ul>
+  </section>
+  
+  <div>
+    <ol>
+      <li><a href="https://www.google.com" target="_blank">Google</a></li>
+      <li><a href="https://www.bing.com" target="_blank">Bing</a></li>
+      <li><a href="https://www.duckduckgo.com" target="_blank">DuckDuckGo</a></li>
+    </ol>    
+  </div>
+
+  <div>
+    <p>
+      <a href="https://www.google.com" target="_blank">
+        <img src="web01/assets/logo_google.png" alt="Logo de Google">
+      </a>
+      <a href="https://www.bing.com" target="_blank">
+        <img src="web01/assets/logo_bing.png" alt="Logo de Bing">
+      </a>
+      <a href="https://www.duckduckgo.com" target="_blank">
+        <img src="web01/assets/logo_duckduckgo.png" alt="Logo de DuckDuckGo">
+      </a>
+    </p>    
+  </div>
+  
+  
   
 </body>
 </html>
