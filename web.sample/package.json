@@ -1,0 +1,12 @@
+{
+  "name": "web.sample",
+  "version": "1.0.0",
+  "description": "Crear un documento HTML con la estructura básica (sample1.html)\r Agregar un comentario al inicio del documento\r Agregar un título a la página\r Agregar varios párrafos\r Agregar un titulo a las listas siguientes\r Agregar una lista desordenada con 3 elementos\r Agrega una lista desordenada con 3 elementos cada uno con una lista anidada con 3 elementos\r Agrega un título al resto de la página\r Agregar alguna imagen con un texto alternativo\r Agregar un titulo a la lista siguiente dentro de la sección de imágenes\r Agregar una lista ordenada con 3 elementos, que sean enlaces a\r Google\r Bing\r DuckDuckGo\r Agregar un párrafo con los mismos enlaces asociados a las imagen de cada buscador\r Validar el documento con el servicio de validación de W3C",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
