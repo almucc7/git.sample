@@ -1,0 +1,52 @@
+<table border="1">
+  <caption>Países</caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th>España</th>
+      <th>Inglaterra</th>
+      <th>Portugal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr> 
+    <th>Capital</th>
+    <td rowspan="2">Madrid</td> 
+    <td>Londres</td>
+    <td>Lisboa</td>
+  </tr>
+  </tbody>  
+  <tfoot>
+    <tr> 
+      <th>Longitud</th>
+      <td rowspan="2">1</td>
+      <td>2</td>    
+      <td>3</td>
+    </tr>
+  </tfoot>
+</table>
+
+<form action="" method="post">
+  <label for=""></label>
+  <input type="text" name="user-name" id="">
+
+  <input type="text" name="user-surname" id="" placeholder="Introduce tu apellido">
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+
+  console.log('Loaded index');
+
+  function handleSubmit(){
+
+    ev.preventDefault() //No hagas el action que está vacío y reinicia el formulario
+    console.log(ev);
+    const elements = ev.target.elements
+    console.log(elements.namedItem('firstName').value); //Muestro los elementos del formulario
+  }
+
+  const form = document.querySelector('form')
+  console.dir(form);
+  form.addEventListener('submit', handleSubmit)
+</script>
