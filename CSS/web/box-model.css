@@ -1,0 +1,62 @@
+*, *::before, *::after { /*Incluimos pseudo clases y pseudo elementos*/
+
+    box-sizing: border-box; /*De borde para dentro, todo forma parte del elemento. Se incluye border y padding*/
+    margin: 0; /*Quitamos los márgenes y padding que nos ponen por defectos los navegadores*/
+    padding: 0;
+    overflow-wrap: break-word;
+     
+   
+}
+
+body{
+
+    background-color: bisque;
+    line-height: 1.5; /*Establecemos el alto de línea usando una escala, para que no importe el tipo de fuente*/
+}
+
+img, picture, canvas, video, svg{
+
+    display: block; /*Ten comportamiento en bloque*/
+    max-width: 100%; /*Ajústate al ancho de la pantalla dinámicamente (sin ancho fijo) Para que no desbordes la pantalla*/
+}
+
+input, button, textarea, select { /*Reseteamos*/
+    font: inherit;
+}
+
+select{ /*Reseteamos las fuentes*/
+
+    font: inherit;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+}
+
+section.box{
+
+    span{
+        display: inline-block; /*Bloques en linea. Los coloco uno al lado del otro*/
+        width: 48%;
+        height: 3rem;
+        background-color: rgb(6, 104, 73);
+        border: 2px solid;
+        margin: 10px;
+    }
+
+    span:nth-of-type(2n){
+
+        background-color: rgb(36, 18, 116);
+    }    
+}
+
+img{
+
+    width: 400px;
+    aspect-ratio: 1/1;  /*Aspecto por defecto, cuadrado*/
+}
+
