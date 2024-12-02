@@ -1,0 +1,23 @@
+.grid{
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /*Repártete el espacio de 3 en 3*/
+    grid-template-rows: 1fr 2fr; /*La segunda fila va a ser el doble de ancha que la primera. El resto serán auto*/
+
+}
+
+p:nth-of-type(3){ /*Párrafo 3*/
+
+    background-color: bisque;
+    grid-column: 1 / 3; /*Vete a la primera columna y ocupa dos columnas*/
+    grid-row: 1 / 3; /*Quiero que ocupes la primera fila*/
+}
+
+p:nth-of-type(2){ /*Párrafo 2*/
+
+    background-color: rgba(146, 12, 12, 0.945);
+    color: bisque;
+    grid-column: -1 / git -3;
+    grid-row: 1 / 3;
+    z-index: 1;
+}
