@@ -1,30 +1,3 @@
-:root{
-    --font-base: 'Roboto', sans-serif;
-}
-
-body{
-    margin: 2rem;
-    background-color: bisque;
-    font-family: var(--font-base);
-   
-}
-
-/*MEDIA QUERIES ACTUALES*/
-@media (width > 400px) { /*Cuando la anchura sea de un máximo de 400px se muestra lo de dentro*/
-
-    body{
-        background-color: brown;
-    }
-} 
-
-@media (width > 800px) { /*Cuando la anchura sea de un máximo de 800px se muestra lo de dentro*/
-
-    body{
-        background-color: chocolate;
-    }
-}
-
-
 /*MOBILE FIRST O DISEÑO ASCENDENTE
 @media (min-width: 400px) { 
 
@@ -40,3 +13,102 @@ body{
     }
 }*/
 
+/* DESKTOP FIRST O DISEÑO DESCENDENTE
+
+body {
+    margin: 2rem;
+    background-color: bisque;
+}
+
+@media (max-width: 800px) {
+    body {
+        background-color: brown;
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        background-color: chocolate;
+    }
+} */
+
+
+
+:root {
+    --font-base: 'Roboto', sans-serif;
+    --font-tech: 'Chakra Petch', sans-serif;
+    --font-yuji: 'Yuji Mai', serif;
+}
+
+body {
+    font-family: var(--font-base);
+    background-color: bisque;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-tech);
+    padding-block: 1rem;
+}
+
+img {
+    margin: 0.5rem auto;
+}
+
+nav {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+header {
+    background-color: brown;
+    color: bisque;
+    padding: 2rem;
+    nav ul {
+        display: flex;
+        justify-content: space-between;
+    }
+    [class*='fa-'] {
+        font-size: 2rem;
+    }
+}
+
+footer {
+    text-align: center;
+    padding-block-end: 1rem;
+    font-family: var(--font-yuji);
+}
+
+main {
+    margin: 1.9rem 2rem;
+}
+
+.separator {
+    width: 50%;
+    margin: 2.5rem auto; /*Con margin auto centramos el elemento horizontalmente, dejando márgenes automáticos arriba, abajo, izquierda y derecha para centrar el elemento*/
+    border: 1px solid brown;
+}
+
+/* @media (min-width: 400px) { */
+@media (width > 700px) {
+    body {
+        background-color: rgb(250, 206, 153);
+    }
+    .articles-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* @media (min-width: 800px) { */
+@media (width > 1000px) {
+}
