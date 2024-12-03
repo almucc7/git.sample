@@ -1,0 +1,45 @@
+:root{
+    --font-base: 'Roboto', sans-serif;
+}
+
+body{
+    margin: 2rem;
+    background-color: bisque;
+    font-family: var(--font-base);
+   
+}
+
+/*MEDIA QUERIES ACTUALES*/
+@media (width > 400px) { /*Cuando la anchura sea de un máximo de 400px se muestra lo de dentro*/
+
+    body{
+        background-color: brown;
+    }
+} 
+
+@media (width > 800px) { /*Cuando la anchura sea de un máximo de 800px se muestra lo de dentro*/
+
+    body{
+        background-color: chocolate;
+    }
+}
+
+
+/*MOBILE FIRST O DISEÑO ASCENDENTE
+@media (min-width: 400px) { 
+
+    body{
+        background-color: brown;
+    }
+} 
+
+@media (min-width: 800px) { 
+
+    body{
+        background-color: chocolate;
+    }
+}*/
+
+h1, h2, h3{
+    font-family: ;
+}
