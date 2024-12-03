@@ -76,7 +76,7 @@ header {
         display: flex;
         justify-content: space-between;
     }
-    [class*='fa-'] {
+    [class*='fa-'] {/*Seleccionamos el atributo class que contenga en cualquier parte de su valor la cadena fa-*/
         font-size: 2rem;
     }
 }
@@ -104,8 +104,8 @@ main {
     }
     .articles-wrapper {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
+        grid-template-columns: 1fr 1fr;/*2 columnas del mismo tamaño, que se ajustan al ancho del contenedor.*/
+        gap: 1.5rem; /*Separación entre columnas*/
     }
 }
 
