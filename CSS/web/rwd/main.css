@@ -1,0 +1,238 @@
+/*MOBILE FIRST O DISEÑO ASCENDENTE
+@media (min-width: 400px) { 
+
+    body{
+        background-color: brown;
+    }
+} 
+
+@media (min-width: 800px) { 
+
+    body{
+        background-color: chocolate;
+    }
+}*/
+
+/* DESKTOP FIRST O DISEÑO DESCENDENTE
+
+body {
+    margin: 2rem;
+    background-color: bisque;
+}
+
+@media (max-width: 800px) {
+    body {
+        background-color: brown;
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        background-color: chocolate;
+    }
+} */
+
+
+
+:root {
+    --font-base: 'Roboto', sans-serif;
+    --font-tech: 'Chakra Petch', sans-serif;
+    --font-yuji: 'Yuji Mai', serif;
+}
+
+body {
+    font-family: var(--font-base);
+    background-color: bisque;
+    min-width: 260px; /*el body no puede ser menor de este tamaño, porque aparece un scroll por abajo, de izquierda a derecha*/
+    /*De esta manera indico que no hago diseño para pantallas menores de este tamaño*/
+}
+
+
+img {
+    margin: 0.5rem auto;
+}
+
+nav {
+
+    max-width: 900px;    
+    margin: 0 auto;
+    padding-inline: 2rem;
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.menu-tablet{
+    /*Una manera de ocultar el menú desplegable sin reservar el espacio
+    position: absolute;
+    left: -10000px;*/
+    /*Otra manera de ocultar el menú desplegable pero reserva el espacio del menú desplegable
+    visibility: hidden;*/
+
+    display: none; /*Ocultamos el menú desplegable sin reservar espacio*/
+}
+
+header {
+    background-color: brown;
+    position: inherit;
+    color: bisque;
+    padding: 2rem;
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    [class*='fa-'] {/*Seleccionamos el atributo class que contenga en cualquier parte de su valor la cadena fa-*/
+        font-size: 2rem;
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0; /*Fijamos abajo del todo el footer y aunque haga scroll no se mueve*/
+    background-color: brown;
+    /*width: 100%;   Es lo mismo que left 0 y right 0*/
+    left: 0;    
+    right: 0;
+    text-align: center;
+    padding-block-end: 1rem;
+    font-family: var(--font-yuji);
+}
+
+.container{
+    max-width: 900px;    
+    margin: 0 auto;
+}
+
+main {
+    margin: 1.9rem 2rem;
+
+    h1,
+    h2,
+    h3 {
+        font-family: var(--font-tech);
+        padding-block: 1rem;
+    }
+
+}
+
+.separator {
+    width: 50%;
+    margin: 2.5rem auto; /*Con margin auto centramos el elemento horizontalmente, dejando márgenes automáticos arriba, abajo, izquierda y derecha para centrar el elemento*/
+    border: 1px solid brown;
+}
+
+
+dialog{
+    border: none;
+    background-color: bisque;
+    top: 7rem;
+    left: 0;  
+    width: 50%;
+    padding: 1rem;
+
+    li{
+        padding-block: 0.5rem;
+    }
+
+    .close{
+        text-align: right;
+        
+
+        button{
+            padding: 0.2rem;
+        }
+    }
+}
+
+
+@media (width > 470px) { /*A partir de este tamaño se produce el cambio*/
+    body {
+        background-color: rgb(250, 206, 153);
+    }
+
+    header{
+        .menu-mobile{ /*Elimina el icono del menú desplegable porque estamos en tamaño tablet*/
+            display: none;
+        }
+
+        .menu-tablet{ /*Muestra las opciones del menú*/
+            display: initial;
+        }
+
+        .menu-h1{
+            flex-basis: 100%; /*Ocupa el 100% del menú. Hace que las opciones del menú bajen*/
+            text-align: center;
+
+            a{ /*Aumento el espacio clickeable en el h1, que nos llevaría al index, haciendo separación clickeable con las opciones del menú*/
+                display: block; /*a es un elemento en linea y necesitamos ponerle padding, asi que lo convertimos en elemento en bloque*/
+                padding-block-end: 1rem;
+            }
+        }
+    }
+
+    
+}
+
+
+@media (width > 500px) {
+
+    header nav ul{ 
+        justify-content: center;
+        column-gap: 1rem; /*Controlo el espacio entre las opciones de menú, hechas con flex, a través de column-gap. Lo reduzco*/
+    }
+}
+
+
+@media (width > 650px) {
+
+    header nav ul{ /*Centro verticalmente el ul que está en el nav que está en el header (centro el h1 con las opciones del menú, verticalmente)*/
+        align-items: baseline;
+        /*justify-content: flex-start; Coloco al h1 al comienzo del nav, a la izquierda del todo*/
+    }
+
+    .menu-h1{
+        flex-basis: auto;
+        padding-block-end: 0rem;  
+        margin-inline-end: auto;  /*El h1, a través de margin auto, empuja a todas las opciones del menú al final, a la derecha del todo. Coge todo el espacio disponible*/    
+
+        a{
+            display: initial;
+        }
+        
+    }
+    
+}
+
+
+/* @media (min-width: 700px) { así se hacía antes*/
+@media (width > 700px) {
+
+    .menu-h1{
+        flex-basis: auto;
+    }
+
+    body {
+        background-color: rgb(250, 206, 153);
+    }
+    .articles-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;/*2 columnas del mismo tamaño, que se ajustan al ancho del contenedor.*/
+        gap: 1.5rem; /*Separación entre columnas*/
+    }
+}
+
+/* @media (min-width: 850px) { */
+@media (width > 850px) {
+
+    header nav{
+        padding-inline: 2rem;
+    }
+}
