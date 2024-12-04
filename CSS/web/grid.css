@@ -7,54 +7,69 @@ body{
     margin-inline: 2rem;
 }
 
-.grid{
+p {
+    padding: 1rem;
+}
+
+section.grid{
 
     display: grid;
     grid-template-columns: repeat(3, 1fr); /*Repártete el espacio de 3 en 3*/
     grid-template-rows: 1fr 2fr; /*La segunda fila va a ser el doble de ancha que la primera. El resto serán auto*/
-
-
-
+    gap: 1rem;
 
     p:nth-of-type(3){ /*Párrafo 3*/
 
-        background-color: bisque;
+        background-color: rgba(255, 228, 196);
         grid-column: 1 / 3; /*Vete a la primera columna y ocupa dos columnas*/
-        grid-row: 1 / 3; /*Quiero que ocupes la primera fila*/
+        grid-row: 1 / 4; /*Quiero que ocupes la primera fila*/
     }
 
     p:nth-of-type(2){ /*Párrafo 2*/
 
-        background-color: rgba(146, 12, 12, 0.945);
+        background-color: brown;
         color: bisque;
-        grid-column: -1 / git -3;
+        grid-column: -1 / -3;
         grid-row: 1 / 3;
         z-index: 1;
+        anchor-name: --red-p;
     }
 
-    p:nth-of-type(5){
-
+    p:nth-of-type(5) {
         color: crimson;
-        background-color: gold;
+        background-color: rgba(122, 111, 50, 0.566);
         position: relative;
-        top: 155px; /*desde donde estabas, muévete hacia abajo 20px*/
+        top:-80px; /*desde donde estabas, muévete hacia abajo 80px*/
         left: -80px;
     }
     
 
 }
 
-section.icon{
+section.icon {
     min-height: 3rem;
     border: 1px solid;
     border-radius: 3rem;
+    position: relative;
 
-    p:first-child{
-        color: pink;
-        background-color: red;
-        position: relative;
-        top: 0;
-        left: 0;
+    p:first-child {
+        background-color: rgba(203, 129, 76, 0.542);
+        border-radius: 50%;
+        position: absolute;
+        top: -2rem;
+        left: 50%;
+    }
+
+    p:nth-of-type(2) {
+        background-color: rgba(10, 53, 10, 0.467);
+        border-radius: 50%;
+        /* position: absolute; */
+        position: fixed;
+        position-anchor: --red-p;
+        /* top: anchor(--red-p center);
+        right: anchor(--red-p center); */
+        position-area: center center;
+        z-index: 2;
     }
 }
 
@@ -64,9 +79,8 @@ section.columns{
     .text-wrapper{
 
         columns: 3;
-        border: 1px solid;   
-        column-gap: 2rem; 
-        column-rule: 1px solid grey;   
+        column-gap: 2rem;
+        column-rule: 1px solid grey;  
     }    
 
     p{

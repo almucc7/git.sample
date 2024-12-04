@@ -22,11 +22,10 @@
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="main.css">   
 
-  <script type="module" src="main.js" defer> /* defe: espérate a cargar, a que se cargue el dialog*/
-
-
-  </script>
+  <!-- defer: espérate a cargar, a que se cargue el dialog -->
+  <script type="module" src="main.js" defer></script>
 </head>
+
 <body>
   <header>
     <nav>
@@ -58,6 +57,7 @@
     </nav>
   </header>
 
+  <!-- MENÚ DESPLEGABLE -->
   <dialog>
     <p class="close">
       <button class="fa-solid fa-rectangle-xmark"></button>
@@ -67,47 +67,56 @@
         <li class="menu-dialog"><a href="#">Proyectos</a></li>
         <li class="menu-dialog"><a href="#">Acerca de</a></li>
         <li class="menu-dialog"><a href="#">Contacta</a></li>
-        <li class="menu-dialog">
-          <a href="" title="LinkedIn">
-            <!-- aria-hidden="true para que los lectores de voz omitan esta parte -->
-            <i class="fa-brands fa-linkedin" aria-hidden="true"></i> 
-          </a>
-        </li>
-        <li class="menu-dialog">
-          <a href="" title="GitHub">
-            <i class="fa-brands fa-github" aria-hidden="true"></i>
-          </a>
-        </li>
+        <li class="menu-dialog"><a href="" title="LinkedIn">
+          <span>LinkedIn</span>
+          <!-- aria-hidden="true para que los lectores de voz omitan esta parte -->
+          <i class="fa-brands fa-linkedin" aria-hidden="true"></i> 
+        </a></li>        
+        <li class="menu-dialog"><a href="" title="GitHub">
+          <span>GitHub</span>
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a></li>        
       </ul>
     </nav>       
   </dialog>
 
-  <div class="container">    
+  <div class="container">
+
     <main>
       <section>
         <h2>Principios</h2>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique dolorum, aperiam porro fuga cupiditate,
-          voluptatum aliquid et corrupti quam magni, esse expedita vel deleniti sit amet tenetur quibusdam laborum cumque!
+          voluptatum aliquid et corrupti quam magni, esse expedita vel deleniti sit amet tenetur quibusdam laborum
+          cumque!
         </p>
-        <img src="https://placehold.jp/300x300.png" alt="Placeholder de imagen">
-  
+        <img class="main-img" srcset="
+        https://placehold.jp/300x300.png 300w,
+        https://placehold.jp/600x600.png 600w,
+        https://placehold.jp/1200x1200.png 1200w,
+        https://placehold.jp/2000x2000.png 2000w" sizes="(min-width: 650px) 50vw"
+          src="https://placehold.jp/200x200.png" alt="Placeholder de imagen">
+
         <div class="articles-wrapper">
           <article>
             <h3>Primer artículo</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio saepe cupiditate, ducimus illo facere nam.
               Ipsam numquam animi vitae iure? Ducimus deserunt odit quidem suscipit hic, ex obcaecati fugiat modi?</p>
-            <p>Aliquam odio itaque est. Quidem fugiat, sit a in laboriosam cum possimus placeat pariatur esse autem minus,
+            <p>Aliquam odio itaque est. Quidem fugiat, sit a in laboriosam cum possimus placeat pariatur esse autem
+              minus,
               commodi saepe ut? Tempora magnam obcaecati enim porro doloremque nam corrupti minima ullam!</p>
-            <p>Illo incidunt ducimus eaque, odit nam non quidem quia ea minus vero qui, deserunt assumenda, vitae mollitia
+            <p>Illo incidunt ducimus eaque, odit nam non quidem quia ea minus vero qui, deserunt assumenda, vitae
+              mollitia
               voluptatibus quaerat! Deserunt debitis aliquid earum hic totam nostrum provident, iste et fugit?</p>
           </article>
           <article>
             <h3>Segundo artículo</h3>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio saepe cupiditate, ducimus illo facere nam.
               Ipsam numquam animi vitae iure? Ducimus deserunt odit quidem suscipit hic, ex obcaecati fugiat modi?</p>
-            <p>Aliquam odio itaque est. Quidem fugiat, sit a in laboriosam cum possimus placeat pariatur esse autem minus,
+            <p>Aliquam odio itaque est. Quidem fugiat, sit a in laboriosam cum possimus placeat pariatur esse autem
+              minus,
               commodi saepe ut? Tempora magnam obcaecati enim porro doloremque nam corrupti minima ullam!</p>
-            <p>Illo incidunt ducimus eaque, odit nam non quidem quia ea minus vero qui, deserunt assumenda, vitae mollitia
+            <p>Illo incidunt ducimus eaque, odit nam non quidem quia ea minus vero qui, deserunt assumenda, vitae
+              mollitia
               voluptatibus quaerat! Deserunt debitis aliquid earum hic totam nostrum provident, iste et fugit?</p>
           </article>
         </div>
@@ -117,7 +126,12 @@
         <h2>
           Finales
         </h2>
-        <img src="https://picsum.photos/seed/picsum/500/300" alt="Imagen random">
+        <picture>
+          <source media="(min-width: 470px)" srcset="https://placehold.jp/700x500.png">
+
+          <img src="https://placehold.jp/500x300.png" alt="Imagen random">
+        </picture>
+
         <div class="final-content">
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error officia similique eligendi necessitatibus
             provident nostrum repellendus tenetur minima quae eius, porro sed eveniet odio aperiam repudiandae eum velit
@@ -126,23 +140,25 @@
             accusantium quae! Consequuntur aliquid laborum quo iusto odit itaque? Neque, labore maiores! Odio, suscipit
             dolor!</p>
           <p>Nostrum, laboriosam quas delectus aspernatur vel aliquam vero quasi, qui, molestiae amet reiciendis
-            perferendis. Commodi nihil assumenda voluptates distinctio, voluptatum nam dolor! Distinctio deserunt laudantium
+            perferendis. Commodi nihil assumenda voluptates distinctio, voluptatum nam dolor! Distinctio deserunt
+            laudantium
             expedita iure voluptas ipsum omnis?</p>
-          <p>Doloremque beatae odit veniam repellat dicta reprehenderit minima, molestias, aperiam ea explicabo quibusdam
+          <p>Doloremque beatae odit veniam repellat dicta reprehenderit minima, molestias, aperiam ea explicabo
+            quibusdam
             ipsum ipsa obcaecati iusto iure! Perspiciatis maxime, quod eligendi est odit non exercitationem quis sunt
             sapiente reiciendis?</p>
-        </div>        
+        </div>
       </section>
       <div class="separator"></div>
     </main>
-  
+
     <footer>
       <address>
         CFD San Blas
       </address>
     </footer>
   </div>
-  
+
 </body>
 
 </html>
