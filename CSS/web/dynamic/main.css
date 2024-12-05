@@ -1,0 +1,55 @@
+body{
+    background-color: bisque;
+    margin: 10rem;
+}
+
+.object{
+    width: 20px;
+    height: 20px;
+    border: 1px solid grey;
+    /*transition-property: all;
+    transition-duration: 2s; /*Duración del cambio*/
+    /*transition-delay: 1s; /*Espérate 1 segundo a hacer las transiciones*/
+    /*transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1); /*Le damos 4 coordenadas*/
+    
+
+    /*ORDEN EN EL QUE PONERLO: PROPIEDAD, DURACIÓN, DELAY Y FUNCIÓN DE TIEMPO (BEZIER)*/
+    /*transition: all 2s 1s cubic-bezier(0.075, 0.82, 0.165, 1); /*Dime lo que duras y luego lo que retrasas. Abreviatura de lo anterior*/
+    
+    
+    
+}
+
+.object:hover{
+    /*animation-name: sample; /*Animación que construyo a través de @keyframes identifier (sample en este caso)*/
+    /*animation-duration: 2s;
+    animation-delay: 1s;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    /*transform: scale(10) rotate(45deg); 
+   /* transition-property: background-color transform; /*Propiedades que quiero cambiar en dos segundos*/
+   /* background-color: blue;    */
+
+ 
+   /*animation-iteration-count: 2; /*Haz la animación tantas veces como te diga aquí*/
+   /*animation-direction: reverse; /*Haz la animación al revés. Con alternate-reverse hago la animación de un corazón, el latido*/
+   /*animation-fill-mode: both; /*Al final de la animación haz...En este caso en lugar de desaparecer, con both, quédate quieta con la ultima transformación mientras haga hover*/
+   
+   animation: sample 0.5s cubic-bezier(0.075, 0.82, 0.165, 1) 0.2s 2 alternate both; /*Abreviatura de todo lo anterior*/
+    
+}
+
+@keyframes sample {
+    0%{   /*LE DOY UN INICIO. Es lo mismo que poner from*/
+        background-color: brown;
+    }
+
+    50%{
+        background-color: pink;
+    }
+
+    100%{ /*LE DOY UN FINAL. Es lo mismo que poner to*/
+        transform: scale(10) rotate(45deg);
+        background-color: blue;
+    } 
+    
+}
