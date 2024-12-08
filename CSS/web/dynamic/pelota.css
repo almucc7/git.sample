@@ -1,114 +1,75 @@
-:root{
+:root {
     --delay: 1s;
-
-}
-
-body{
+    --ball-size: 25px;
+    --animation-duration: 4s;
+    --ball-gradient: linear-gradient(
+      120deg,
+      hsl(240deg 100% 20%) 0%,
+      hsl(319deg 100% 30%) 25%,
+      hsl(346deg 83% 51%) 41%,
+      hsl(30deg 100% 55%) 52%,
+      hsl(55deg 100% 50%) 60%,
+      hsl(65deg 100% 47%) 67%,
+      hsl(76deg 100% 48%) 72%,
+      hsl(89deg 100% 49%) 77%,
+      hsl(131deg 100% 50%) 81%,
+      hsl(59deg 100% 41%) 84%,
+      hsl(32deg 100% 50%) 89%,
+      hsl(347deg 100% 58%) 93%,
+      hsl(319deg 100% 50%) 100%
+    );
+  }
+  
+  body {
     background-color: bisque;
     margin: 10rem;
-}
-
-
-.object-ball{
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    background-color: blue;   
-    background-image: linear-gradient(
-        120deg,
-        hsl(240deg 100% 20%) 0%,
-        hsl(319deg 100% 30%) 25%,
-        hsl(346deg 83% 51%) 41%,
-        hsl(30deg 100% 55%) 52%,
-        hsl(55deg 100% 50%) 60%,
-        hsl(65deg 100% 47%) 67%,
-        hsl(76deg 100% 48%) 72%,
-        hsl(89deg 100% 49%) 77%,
-        hsl(131deg 100% 50%) 81%,
-        hsl(59deg 100% 41%) 84%,
-        hsl(32deg 100% 50%) 89%,
-        hsl(347deg 100% 58%) 93%,
-        hsl(319deg 100% 50%) 100%
-    );
-      
-    border-radius: 50%;
-    animation-name: move;
-    animation-duration: 4s;
-}
-
-.object-ball-2{
-    width: 25px;
-    height: 25px;   
-    background-color: blue;   
-    background-image: linear-gradient(
-        120deg,
-        hsl(240deg 100% 20%) 0%,
-        hsl(319deg 100% 30%) 25%,
-        hsl(346deg 83% 51%) 41%,
-        hsl(30deg 100% 55%) 52%,
-        hsl(55deg 100% 50%) 60%,
-        hsl(65deg 100% 47%) 67%,
-        hsl(76deg 100% 48%) 72%,
-        hsl(89deg 100% 49%) 77%,
-        hsl(131deg 100% 50%) 81%,
-        hsl(59deg 100% 41%) 84%,
-        hsl(32deg 100% 50%) 89%,
-        hsl(347deg 100% 58%) 93%,
-        hsl(319deg 100% 50%) 100%
-    );
-      
-    border-radius: 50%;
-    animation-name: move;
-    animation-duration: 4s;
-    animation-delay: var(--delay);
-}
-
-.object-ball-3{
-    width: 25px;
-    height: 25px;
+  }
+  
+  .ball-container {
     position: relative;
-    bottom: 25px;
-    background-color: blue;   
-    background-image: linear-gradient(
-        120deg,
-        hsl(240deg 100% 20%) 0%,
-        hsl(319deg 100% 30%) 25%,
-        hsl(346deg 83% 51%) 41%,
-        hsl(30deg 100% 55%) 52%,
-        hsl(55deg 100% 50%) 60%,
-        hsl(65deg 100% 47%) 67%,
-        hsl(76deg 100% 48%) 72%,
-        hsl(89deg 100% 49%) 77%,
-        hsl(131deg 100% 50%) 81%,
-        hsl(59deg 100% 41%) 84%,
-        hsl(32deg 100% 50%) 89%,
-        hsl(347deg 100% 58%) 93%,
-        hsl(319deg 100% 50%) 100%
-    );
-      
+    width: var(--ball-size);
+    height: var(--ball-size);
+  }
+  
+  .ball {
+    width: var(--ball-size);
+    height: var(--ball-size);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: var(--ball-gradient);
     border-radius: 50%;
     animation-name: move;
-    animation-duration: 4s;
-    animation-delay: calc(var(--delay) * 2)
-}
-
-
-
-@keyframes move {   
-   
-    25%{
-        transform: translate(10rem, 0rem);
+    animation-duration: var(--animation-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: 2; /*Dan 2 vueltas y paran*/
+  }
+  
+  .ball-1 {
+    animation-delay: 0s;
+  }
+  
+  .ball-2 {
+    animation-delay: var(--delay);
+  }
+  
+  .ball-3 {
+    animation-delay: calc(var(--delay) * 2);
+  }
+  
+  /* Animación del recorrido en cuadrado */
+  @keyframes move {
+    25% {
+      transform: translate(10rem, 0);
     }
-    50%{
-        transform: translate(10rem, 10rem);
+    50% {
+      transform: translate(10rem, 10rem);
     }
-    
-    75%{
-        transform: translate(0rem, 10rem);
+    75% {
+      transform: translate(0, 10rem);
     }
-    
-    100%{
-        transform: translate(0rem, 0rem);
+    100% {
+      transform: translate(0, 0);
     }
-    
-}
+  }
+  
