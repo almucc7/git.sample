@@ -1,3 +1,6 @@
+import { createHeader } from './components/header.js';
+import { tttGame } from './ttt.js';
+
 console.log('Index loaded');
 
 // function greeting() {
@@ -17,20 +20,31 @@ console.log('Index loaded');
 // const button = document.querySelector('form button')
 // button.addEventListener('click', greeting)
 
-// El DOM como "árbol" de objetos
-console.dir(document);
+function checkDOM(params) {
+    // El DOM como "árbol" de objetos
+    console.dir(document);
 
-// Acceso secuencial a cualquier nodo
-console.dir(document.children[0].children[1].children[0].children[1]);
+    // Acceso secuencial a cualquier nodo
+    console.dir(document.children[0].children[1].children[0].children[1]);
 
-// Acceso directo buscando un nodo: API selectors
-const headerElement = document.querySelector('header');
-console.dir(headerElement.querySelectorAll('img'));
+    // Acceso directo buscando un nodo: API selectors
+    const headerElement = document.querySelector('header');
+    console.dir(headerElement.querySelectorAll('img'));
 
-document.querySelector('#header');
-document.querySelector('article>p.header');
+    document.querySelector('#header1');
+    document.querySelectorAll('p');
+    document.querySelectorAll('.basic');
+    document.querySelectorAll('[name="valor de name"]');
+    document.querySelector('article>p.header');
 
-// Acceso directo "previo"
-document.getElementById('id1');
-document.getElementsByTagName('h1');
-document.getElementsByClassName('basic');
+    // Acceso directo "previo"
+    document.getElementById('header1');
+    document.getElementsByTagName('p');
+    document.getElementsByClassName('basic');
+    document.getElementsByName('valor de name');
+}
+
+const title = 'Juegos';
+document.querySelector('header').outerHTML = createHeader(title);
+
+tttGame();

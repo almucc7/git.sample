@@ -5,30 +5,54 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Ejercicios de JS en la Web">
-  <title>Saludo</title>
+  <title>Juegos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
   <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
   <link rel="stylesheet" href="./reset.css">
   <link rel="stylesheet" href="./main.css">
-  <script src="./index.js" defer></script>
+  <script src="./index.js" type="module" defer></script>
 </head>
 
 <body>
-  <header class="main-header">
-    <img src="./favicon.svg" width="50" alt="Logo">
-    <h1>Saludos</h1>
-  </header>
-  <main>
-    <menu>
+
+  <header></header>
+
+  <main data-id="2">
+    <!-- <menu>
       <li><button>Saludar</button></li>
       <li><button>Cerrar</button></li>
-    </menu>
+    </menu> -->
 
-    <p>Cuando llega el HTML:</p>
-    <ul>
-      <li>Parse -> DOM</li>
-      <li>Render (Layout)</li>
-      <li>Paint</li>
-    </ul>
+    <section class="ttt">
+      <h2>Tres en raya</h2>
+      <dl>
+        <dt>Players</dt>
+        <dd></dd>
+        <dd></dd>
+      </dl>
+      <div class="wrapper">
+        <div class="board">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div class="info"></div>
+        <dialog class="info"></dialog>
+      </div>
+
+    </section>
+
+
+
+
   </main>
 </body>
 
