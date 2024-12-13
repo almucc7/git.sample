@@ -1,10 +1,22 @@
 export function tttGame() {
     const players = [
-        { firstName: 'Pepe', surName: '', alias: 'Pepin', icon: '😎' },
-        { firstName: 'Ernestina', surName: '', alias: '', icon: '👺' },
+        {
+            firstName: 'Pepe',
+            surName: '',
+            alias: 'Pepin',
+            icon: '😎',
+            positions: '',
+        },
+        {
+            firstName: 'Ernestina',
+            surName: '',
+            alias: '',
+            icon: '👺',
+            positions: '',
+        },
     ];
 
-    const ddElements = document.querySelectorAll('.ttt dd');
+    const ddElements = document.querySelectorAll('.players dd');
 
     for (let i = 0; i < ddElements.length; i++) {
         const item = ddElements[i];
@@ -18,12 +30,19 @@ export function tttGame() {
         item.innerHTML = text;
     }
 
-    function playTurn(position, player) {
-        const boardElement = document.querySelector('.board');
-        const boardElements = document.querySelectorAll('.board div');
+    const boardElement = document.querySelector('.board');
+    // Alternativa: acceder a cada casilla
+    // const boardElements = document.querySelectorAll('.board div');
+
+    function playTurn(position, playerIndex) {
+        ddElements.forEach((item) => {
+            item.classList.remove('current-player');
+        });
+        ddElements[playerIndex].classList.add('current-player');
+
         const infoElement = document.querySelector('dialog.info');
-        console.dir(boardElement.children[0]);
-        console.dir(boardElements[0]);
+        // console.dir(boardElement.children[0]);
+        // console.dir(boardElements[0]);
 
         if (boardElement.children[position - 1].textContent) {
             infoElement.textContent = 'Movimiento inválido';
@@ -31,39 +50,108 @@ export function tttGame() {
             setTimeout(function () {
                 infoElement.textContent = '';
                 infoElement.close();
-            }, 2000);
+            }, 500);
             return;
         }
 
-        boardElement.children[position - 1].innerHTML = player.icon;
+        boardElement.children[position - 1].innerHTML =
+            players[playerIndex].icon;
+
+        players[playerIndex].positions += position;
     }
 
     // Jugar simulado
 
-    // Posiciones de 1 a 9
+    function simulateGame() {
+        // Posiciones de 1 a 9
+        const delay = 10;
+        setTimeout(() => {
+            // Empieza Pepe
+            playTurn(5, 0);
+            setTimeout(() => {
+                // Juega Ernestina (error)
+                playTurn(5, 1);
+                setTimeout(() => {
+                    // Juega Ernestina bien
+                    playTurn(4, 1);
+                    setTimeout(() => {
+                        // Juega Pepe
+                        playTurn(3, 0);
+                        setTimeout(() => {
+                            // Juega Ernestina
+                            playTurn(7, 1);
+                            setTimeout(() => {
+                                // Juega Pepe
+                                playTurn(1, 0);
 
-    // Empieza Pepe
-    playTurn(5, players[0]);
+                                setTimeout(() => {
+                                    // Juega Ernestina
+                                    playTurn(2, 1);
 
-    // Juega Ernestina
-    playTurn(5, players[1]);
-    playTurn(4, players[1]);
+                                    setTimeout(() => {
+                                        // Juega Pepe
+                                        playTurn(9, 0);
+                                        console.log(players);
+                                    }, delay);
+                                }, delay);
+                            }, delay);
+                        }, delay);
+                    }, delay);
+                }, delay);
+            }, delay);
+        }, delay);
+    }
 
-    // Empieza Pepe
-    playTurn(3, players[0]);
+    function clearGame() {
+        [...boardElement.children].forEach((item) => {
+            item.textContent = '';
+        });
+    }
 
-    // Juega Ernestina
-    playTurn(7, players[1]);
+    function handleButtonClick(event) {
+        console.log('click', event);
+        console.dir(event.target);
+        const id = +event.target.dataset.id;
+        console.log(id);
 
-    // Empieza Pepe
-    playTurn(1, players[0]);
+        if (id === 0) {
+            simulateGame();
+        } else {
+            clearGame();
+        }
 
-    // Juega Ernestina
-    playTurn(2, players[1]);
+        // const functions = [simulateGame, clearGame];
+        // functions[id]();
+    }
 
-    // Empieza Pepe
-    playTurn(9, players[0]);
-
-    // Juega Ernestina
-    playTurn(8, players[1]);
+    document.querySelectorAll('.ttt button').forEach((button) => {
+        button.addEventListener('click', handleButtonClick);
+    });
 }
+
+// TODO
+
+// Algoritmia
+// Comprobar si ya hay 3 piezas de un jugador
+// Permitir movimientos solo a las casillas vacías y cercanas
+// Comprobar si un jugador ganó
+// https://www.youtube.com/watch?v=ZbLPTM9lZCY
+// Mostrar un mensaje de victoria
+
+function checkWinner(value) {
+    // winnerSeries = ['123', '456', '789', '147', '258', '369', '159', '357'];
+}
+
+let option1 = '1247'; // true
+let option2 = '2358'; // true
+let option = '1248'; // false
+checkWinner(option); // true
+
+// Interacción con el usuario
+// Permitir a los jugadores introducir su nombre
+// Permitir a los jugadores introducir su icono
+// Permitir a los jugadores introducir su alias
+// Permitir a los jugadores indicar una posición
+
+// IA
+// Crear una IA que juegue automáticamente

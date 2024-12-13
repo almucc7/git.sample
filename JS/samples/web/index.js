@@ -20,7 +20,7 @@ console.log('Index loaded');
 // const button = document.querySelector('form button')
 // button.addEventListener('click', greeting)
 
-function checkDOM(params) {
+function checkDOM() {
     // El DOM como "árbol" de objetos
     console.dir(document);
 
@@ -45,6 +45,32 @@ function checkDOM(params) {
 }
 
 const title = 'Juegos';
-document.querySelector('header').outerHTML = createHeader(title);
+// document.querySelector('header').outerHTML = createHeader_brown(title);
+
+document
+    .querySelector('body')
+    .insertAdjacentHTML('afterBegin', createHeader(title));
 
 tttGame();
+
+const elementButton = document.querySelector('.test button');
+elementButton.setAttribute('class', 'patata');
+//html: <button disabled></button>
+// DOM: disabled=true
+// DOM attributes:
+//      0: disabled
+//      disabled: disabled
+// elementButton.disabled = true;
+// html: <button disabled></button>
+// DOM: disabled=true
+// DOM attributes:
+//      0: disabled
+//      disabled: disabled
+console.dir(elementButton);
+console.log('disable', elementButton.disabled);
+console.log('attributes', elementButton.attributes);
+
+elementButton.removeAttribute('disabled');
+// // elementButton.disabled = false;
+// console.log('disable', elementButton.disabled);
+// console.log('attributes', elementButton.attributes);
