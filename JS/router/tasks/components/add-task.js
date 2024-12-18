@@ -17,5 +17,20 @@ export function createAddTask(selector = 'body', position = 'afterbegin') {
     `;
 
     const element = render(selector, position, template);
+
+    const button = element.querySelector('button');
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+
+      const titleInput = document.querySelector('input[name="title"]');
+      const titleValue = titleInput.value;
+      console.log(titleValue);
+      const ownerInput = document.querySelector('input[name="owner"]');
+      const ownerValue = ownerInput.value;
+      console.log(ownerValue);
+
+    
+    });
+
     return element;
 }
