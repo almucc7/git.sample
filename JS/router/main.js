@@ -1,65 +1,51 @@
-import { loadAbout } from "./about/about.js";
-import { loadPorfolio } from "./porfolio/porfolio.js";
+import { createHeader } from '../components/header.js';
+import { loadAbout } from './about/about.js';
+import { createFooter } from './components/footer.js';
+import { createMenu } from './components/menu.js';
+import { loadContacts } from './contacts/contacts.js';
+import { loadPorfolio } from './porfolio/porfolio.js';
+import { loadTasks } from './tasks/tasks.js';
 
+function loadIndex() {
+    console.log('Loaded main');
 
-function makeHeaderString(pageTitle){
+    const menuOptions = [
+        { path: '/index.html', label: 'Inicio' },
+        { path: '/porfolio/porfolio.html', label: 'Porfolio' },
+        { path: '/contacts/contacts.html', label: 'Contactos' },
+        { path: '/tasks/tasks.html', label: 'Tareas' },
+        { path: '/about/about.html', label: 'Acerca de' },
+    ];
+    let page = location.pathname.split('/').at(-1).split('.').at(0);
+    // page = '' ? 'index' : page
+    page = page || 'index';
 
-    let pageTitle = 'Aprendiendo rutas';
-    const headerTemplate = /*html*/ `
-    <header>
-        <h1>${pageTitle}</h1>
-            <nav>
-                <ul>
-                <li>
-                    <a href="./index.html">Inicio</a>
-                </li>
-                <li>
-                    <a href="./porfolio.html">Porfolio</a>
-                </li>
-                <li>
-                    <a href="./about.html">About</a>
-                </li>
-                </ul>
-            </nav>
-    </header>
-`;
+    const router = {
+        porfolio: loadPorfolio,
+        about: loadAbout,
+        tasks: loadTasks,
+        contacts: loadContacts,
+        index: createHeader,
+    };
 
-return headerTemplate;
-}
+    // switch (page) {
+    //     case 'porfolio':
+    //         loadPorfolio();
+    //         break;
+    //     case 'about':
+    //         loadAbout();
+    //         break;
+    //     case 'contacts':
+    //         loadContacts();
+    //         break;
+    //     default:
+    //         createHeader('');
+    // }
 
+    router[page]();
 
-
-console.log('Loaded main');
-
-const path = location.pathname;
-console.log(path);
-console.log(path.split('/').at(-1).split('.').at(0));
-console.log(path.split('/').at(-1)); //at es lo mismo que poner [-1], pero at admite números negativos. Significa que cogemos el último elemento del array
-
-
-
-
-
-
-function loadIndex(){
-    //Llamamos a las funciones que están en about.js y porfolio.js para cargar los html de las páginas sin necesidad de usar script para enlazarlas
-    const page = '';
-
-    document.body.insertAdjacentHTML("afterbegin", headerTemplate);
-
-    switch(page){
-
-        case 'porfolio.html':
-            pageTitle = 'Porfolio';
-            loadPorfolio();
-            break;
-
-        case 'about.html':
-            pageTitle = 'About';
-            loadAbout();
-            break;
-    }    
+    createMenu(menuOptions, 'header', 'beforeend');
+    createFooter('body', 'beforeend');
 }
 
 loadIndex();
-

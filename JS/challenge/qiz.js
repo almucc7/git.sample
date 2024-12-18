@@ -54,19 +54,32 @@ import FACTS from './facts.json' with { type: 'json' };//Le digo al navegador ex
     
 
     // TODO 6B: Dentro de la función del controlador de eventos, mostrar la explicación del hecho estableciendo el texto del elemento de explicación
-    function handleButtonClick(){
+    function handleButtonClick(event){
       explanationElement.innerHTML = fact.explicación;
 
-       // TODO 7: Dentro de la función del controlador de eventos. Usar un bucle for para deshabilitar todos los botones de opción
-       optionButtons.forEach(button => {
-        disable(button);
+      // TODO 7: Dentro de la función del controlador de eventos. Usar un bucle for para deshabilitar todos los botones de opción
+      optionButtons.forEach(button => {
+      disable(button);
+
+      // TODO 8: Dentro de la función del controlador de eventos, obtener el valor supuesto del botón clicado
+      event.target.value;          
+      
        });
+
+       // Usar una condición para comparar la suposición con la respuesta del hecho y agregar la clase "correct"/"incorrect" según corresponda
+       if(event.target.value === fact.answer){ //Si el value del botón clicado es igual que el valor de la respuesta (si es verdadera o falsa)
+          
+        event.target.classList.add('correct'); //añade al botón la clase correct
+      
+      }else{
+
+        event.target.classList.add('incorrect'); //y si no, añade al botón la clase incorrect
+        
+      }
+
 
     }
    
 
 
-    // TODO 8: Dentro de la función del controlador de eventos,
-    // Obtener el valor supuesto del botón clicado
-    // Usar una condición para comparar la suposición con la respuesta del hecho
-    // y agregar la clase "correct"/"incorrect" según corresponda
+   

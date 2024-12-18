@@ -1,8 +1,15 @@
-*{
+* {
     box-sizing: border-box;
 }
-
-body{
+body {
     background-color: bisque;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
+body.about {
+    background-color: goldenrod;
+}
+
+footer {
+    margin-block: 1rem;
+}
