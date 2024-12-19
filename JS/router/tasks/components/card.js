@@ -24,12 +24,29 @@ export function createCard(
             </div>
         </li>
         `;
+
+    function handleSubmit(event){
+
+        event.preventDefault();
+        //Recojo el name y el texto introducido de los inputs (owner: Pepito)
+        const formData = new FormData(event.target);
+        const data = Object.fromEntries(formData);
+
+        const newTask = {
+            ...data,    //Desestructurame data y así no tengo que poner todas sus propiedades, porque si vienen más, tengo que ponerlas todas?
+            id: crypto.randomUUID().split('-')[0],            
+            isDone: false
+        };
+
+        //Maneras de coger el valor de los inputs aparte de las 2 lineas de arriba:
+           //event.target.elements[0].value;
+          //namedItem('title').value; cojo el valor 
+    }
+
     const element = render(selector, position, template);
 
-    const button = element.querySelector('button');
-    button.addEventListener('click', () => {
-        console.log(task);
-        deleteCard(task);
-    });
+    element.addEventListener('submit', handleSubmit) //Quiero submit para que valide el formulario
+
+    
     return element;
 }
