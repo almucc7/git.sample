@@ -1,3 +1,3 @@
-let x = 'Pepe';
+import { add } from "./services";
 
-console.log(x);
+add(3,4);

@@ -1,5 +1,5 @@
 {
-  "name": "demo-pro",
+  "name": "front",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,13 +7,11 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
-    "lint": "eslint .",
-    "tsc": "tsc"
+     "test": "vitest"
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
-    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.7",
     "eslint": "^9.18.0",
     "globals": "^15.14.0",
     "typescript": "~5.6.2",

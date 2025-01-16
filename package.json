@@ -10,7 +10,10 @@
   "author": "Almudena Cantarero",
   "license": "ISC",
   "keywords": [],
-  "prettier":{
+  "prettier": {
     "singleQuote": true
+  },
+  "devDependencies": {
+    "vitest": "^2.1.8"
   }
 }
