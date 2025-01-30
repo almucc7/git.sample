@@ -37,7 +37,7 @@ const obj: {
     age: 23,
 };
 
-obj.age = 24;
+//obj.age = 24;
 
 //Propiedades opcionales:
 
