@@ -9,9 +9,8 @@ export default [
   {languageOptions: { globals: {...globals.browser, ...globals.node} }},
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-
   {
-    rules:{
+    rules: {
         'prefer-const': 'warn',
     },
   },

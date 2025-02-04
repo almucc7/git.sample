@@ -1,3 +1,7 @@
-import { add } from "./services";
+import { add } from "./services.ts";
 
-add(3,4);
+console.log('Loaded main');
+
+console.log(add(4, 5));
+
+

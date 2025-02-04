@@ -1,0 +1,13 @@
+{
+    "name": "challenge",
+    "version": "1.0.0",
+    "description": "Juego de preguntas y respuestas de verdadero/falso",
+    "main": "sample.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
