@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import fs from 'node:fs/promises';
 import 'dotenv/config';
 import createDebug from 'debug';
+import { HtmlError } from './error.js';
 
 const createHtmlString = (title: string, header: string, content?: string) => `
     <!DOCTYPE html>
@@ -90,14 +91,18 @@ const postController = (request: IncomingMessage, response: ServerResponse) => {
     });
 
     request.on('end', () => {
+        // Haríamos algo con los datos recibidas
+        const data = JSON.parse(body);
+        data.id = crypto.randomUUID();
+
+        const result = {
+            message: 'Datos recibidos',
+            data,
+        };
+
         response.statusCode = 201;
         response.setHeader('Content-Type', 'application/json; charset=utf-8');
-        response.end(
-            JSON.stringify({
-                message: 'Datos recibidos',
-                data: JSON.parse(body),
-            }),
-        );
+        response.end(JSON.stringify(result));
     });
 };
 
@@ -105,13 +110,14 @@ const appRouter = (request: IncomingMessage, response: ServerResponse) => {
     const { url, method } = request;
 
     if (!url) {
-        response.statusCode = 404;
-        response.end('Not found');
+        const error = new HtmlError('Not found url empty', 404, 'Not found');
+        server.emit('error', error);
         return;
     }
 
     debug(method, url);
 
+    let error: HtmlError;
     switch (method) {
         case 'GET':
             getController(request, response);
@@ -124,9 +130,12 @@ const appRouter = (request: IncomingMessage, response: ServerResponse) => {
         case 'PATCH':
         case 'DELETE':
         default:
-            response.statusCode = 405;
-            response.setHeader('Content-Type', 'text/plain; charset=utf-8');
-            response.end('Método no permitido');
+            error = new HtmlError(
+                'Method not allowed',
+                405,
+                'Method not allowed',
+            );
+            server.emit('error', error, response);
     }
 };
 
@@ -146,13 +155,32 @@ const listenManager = () => {
     debug(`Servidor escuchando en ${bind}`);
 };
 
+const errorManager = (error: Error | HtmlError, response: ServerResponse) => {
+    if (!('status' in error)) {
+        error = {
+            ...error,
+            statusCode: 500,
+            status: 'Internal Server Error',
+        };
+    }
+
+    const publicMessage = `Error: ${error.statusCode} ${error.status}`;
+    debug(publicMessage, error.message);
+
+    const html = createHtmlString(
+        'Error | Node Server',
+        'Error',
+        publicMessage,
+    );
+    response.statusCode = error.statusCode;
+    response.statusMessage = error.status;
+    response.setHeader('Content-Type', 'text/html; charset=utf-8');
+    response.end(html);
+};
+
 const debug = createDebug('app:server');
 const PORT = process.env.PORT || 3000;
-
 const server = createServer(appRouter);
 server.listen(PORT);
 server.on('listening', listenManager);
-server.on('error', (error) => {
-    console.error(error);
-    debug(error);
-});
+server.on('error', errorManager);
