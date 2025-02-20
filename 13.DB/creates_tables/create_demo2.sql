@@ -15,4 +15,4 @@ CREATE TABLE ANIMALS (
      slogan text,
      created_at timestamp DEFAULT (NOW()),
      updated_at timestamp DEFAULT (NOW())
-);
+); 
