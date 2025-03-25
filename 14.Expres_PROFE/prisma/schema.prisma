@@ -8,7 +8,7 @@ datasource db {
 }
 
 model animals {
-  id          String    @id @default(dbgenerated("(uuid())")) @db.Char(18)
+  animalID    Bytes     @id @default(dbgenerated("(uuid_to_bin(uuid()))")) @db.Binary(16)
   name        String    @unique(map: "name") @db.VarChar(255)
   englishName String    @unique(map: "englishName") @db.VarChar(255)
   sciName     String    @db.VarChar(255)
@@ -16,7 +16,7 @@ model animals {
   lifestyle   String    @db.VarChar(255)
   location    String    @db.VarChar(255)
   slogan      String?   @db.Text
-  group_      String    @db.VarChar(255)
+  bioGroup    String    @db.VarChar(255)
   image       String    @db.VarChar(255)
   created_at  DateTime? @default(dbgenerated("(now())")) @db.Timestamp(0)
   updated_at  DateTime? @default(dbgenerated("(now())")) @db.Timestamp(0)
