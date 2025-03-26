@@ -1,12 +1,8 @@
 // Módulo
 
-// function foo() {
-//     console.log('Soy foo');
-// }
-
 // Crea una función que cuente la cantidad de palabras en una frase.
 
-export function countWords(sentence: string) {  
+export function countWords(sentence: string) {
     if (sentence === '') return 0;
     const words = sentence.split(' ');
     return words.filter((word) => word !== '').length;
